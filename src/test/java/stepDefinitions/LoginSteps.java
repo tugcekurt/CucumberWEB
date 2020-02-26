@@ -8,17 +8,21 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.support.PageFactory;
 import pageObject.HomePage;
 import pageObject.LoginPopUp;
+import pageObject.ProductDetailPage;
 
 public class LoginSteps {
 
     TestContext testContext;
     HomePage homePage;
     LoginPopUp loginpopup;
+    ProductDetailPage productdetail;
+
     public LoginSteps(TestContext context) {
 
         testContext = context;
         homePage = testContext.getPageObjectManager().getHomePage();
         loginpopup=testContext.getPageObjectManager().getLoginPopUp();
+        productdetail=testContext.getPageObjectManager().getProductDetailPage();
     }
 
     @Given("^user is on HomePage$")
@@ -59,8 +63,28 @@ public class LoginSteps {
 
     }
 
+    @Then("^user click any ProductDetail image$")
+    public void ClickProductDetail$()
+    {
 
+       homePage.ClickProductDetail();
 
+    }
+    @Then("user select filter {string}")
+    public void SelectFilter(String filter)
+    {
+
+        productdetail.ClickFilterMEnu(filter);
+
+    }
+
+    @Then("user select any checkbox")
+    public void SelectCheckbox()
+    {
+
+        productdetail.SelectAnyCheckboxOnFilterMenu();
+
+    }
 
     
 }

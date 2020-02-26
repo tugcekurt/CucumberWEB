@@ -1,6 +1,7 @@
 package pageObject;
 
 import managers.FileReadManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -40,6 +41,9 @@ public class HomePage {
 
     @FindBy(how = How.XPATH, using = "//div[@id='modal-root']//..//div[contains(@title,'Kapat')]")
     private WebElement btn_CloseIndirimleriKacırmaPopUp;
+
+    @FindBy(how = How.XPATH, using = " //*[@id='browsing-gw-homepage']//article[@class='component-item']/a")
+    private List<WebElement> detail_images;
 
     public  void NavigateHomePage()
     {
@@ -86,12 +90,14 @@ public class HomePage {
                             "arguments[0].naturalWidth > 0", images);
 
             System.out.println(result);
-            Assert.assertTrue(images.getText() + "not loaded!", result.toString().contains("true"));
+
 
         }
         catch (Exception ignore)
         {
-           //TO DO log basımı...
+            Logger logger =Logger.getLogger(HomePage.class);
+
+           logger.info("Images not loaded");
         }
 
 
@@ -118,6 +124,16 @@ public class HomePage {
         }
 
 
+    }
+
+    public  void ClickProductDetail()
+    {
+        for (WebElement detail_img:detail_images) {
+
+            detail_img.click();
+            break;
+
+        }
     }
 
 }
