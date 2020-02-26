@@ -11,4 +11,4 @@ Feature:Login
 
     Examples:
       | email                 | password     |
-      | tugcekurt06@gmail.com | password1234 |
+      | seleniumautomation987123@gmail.com | password123 |
