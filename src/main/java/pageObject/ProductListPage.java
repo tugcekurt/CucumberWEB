@@ -71,6 +71,7 @@ public class ProductListPage {
         for (WebElement filteredproduct : filteredproducts) {
 
            filteredproduct.click();
+           break;
 
 
         }
