@@ -1,5 +1,6 @@
 package pageObject;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,12 +11,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class ProductDetailPage {
+public class ProductListPage {
 
     WebDriver driver;
     String filterName;
 
-    public ProductDetailPage(WebDriver driver) {
+    public ProductListPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -27,7 +28,7 @@ public class ProductDetailPage {
     @FindBy(how = How.XPATH, using = "//div[@class='dd-list']/ul//li/i[@class='check']")
     private List<WebElement> chkboxes_FilterMenu;
 
-    @FindBy(how = How.XPATH, using = " //div[@class='products']/div")
+    @FindBy(how = How.XPATH, using = "//div[@class='products']/div")
     private List<WebElement> filteredproducts;
 
     public  void ClickFilterMEnu(String filter)
@@ -61,5 +62,17 @@ public class ProductDetailPage {
         }
     }
 
-    //TODO :Checkkategory list is true
+    public void ClickAnyProduct()
+    {
+
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+
+
+        for (WebElement filteredproduct : filteredproducts) {
+
+           filteredproduct.click();
+
+
+        }
+    }
 }

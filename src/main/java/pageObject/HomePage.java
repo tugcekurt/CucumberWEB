@@ -2,15 +2,14 @@ package pageObject;
 
 import managers.FileReadManager;
 import org.apache.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.junit.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -29,6 +28,12 @@ public class HomePage {
 
     @FindBy(how = How.ID, using = "accountBtn")
     private WebElement btn_Login;
+
+    @FindBy(how = How.XPATH, using = "//span[@id='logged-in-container']/span")
+    private WebElement btn_Hesabim;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='user-email']")
+    private WebElement btn_userMail;
 
     @FindBy(how = How.XPATH, using = "//a[contains(@title,'Close')]")
     private WebElement btn_x;
@@ -59,7 +64,17 @@ public class HomePage {
         WebDriverWait wait = new WebDriverWait(driver, 3);
 
     }
+    public  void CheckIsUserLogin(String mail)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, 3);
 
+        wait.ignoring(StaleElementReferenceException.class).until((ExpectedConditions.elementToBeClickable(By.xpath("//span[@id='logged-in-container']/span"))));
+        driver.findElement(By.xpath("//span[@id='logged-in-container']/span")).click();
+        //btn_Hesabim.click();
+        String email=btn_userMail.getText();
+
+        Assert.assertTrue(email.equals(mail));
+    }
     public  void PassAlertPopUp()
     {
         btn_x.click();
@@ -126,7 +141,7 @@ public class HomePage {
 
     }
 
-    public  void ClickProductDetail()
+    public  void Clickproductlist()
     {
         for (WebElement detail_img:detail_images) {
 

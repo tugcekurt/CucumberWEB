@@ -8,21 +8,21 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.support.PageFactory;
 import pageObject.HomePage;
 import pageObject.LoginPopUp;
-import pageObject.ProductDetailPage;
+import pageObject.ProductListPage;
 
 public class LoginSteps {
 
     TestContext testContext;
     HomePage homePage;
     LoginPopUp loginpopup;
-    ProductDetailPage productdetail;
+    ProductListPage productlist;
 
     public LoginSteps(TestContext context) {
 
         testContext = context;
         homePage = testContext.getPageObjectManager().getHomePage();
         loginpopup=testContext.getPageObjectManager().getLoginPopUp();
-        productdetail=testContext.getPageObjectManager().getProductDetailPage();
+        productlist=testContext.getPageObjectManager().getProductListPage();
     }
 
     @Given("^user is on HomePage$")
@@ -44,13 +44,12 @@ public class LoginSteps {
                loginpopup.EnterEmailAndPAssWord(email,password);
     }
 
-    @And("^click GirisYap button$")
-    public void ClickGirisYApButton()
+    @And("click GirisYap button and check user is login with {string}")
+    public void ClickGirisYApButton(String email)
     {
         loginpopup.ClickGirisYapButton();
 
-        homePage.CheckIndirimleriKacirmaPopUp();
-        homePage.ClickTabButons();
+        homePage.CheckIsUserLogin(email);
 
     }
 
@@ -63,18 +62,18 @@ public class LoginSteps {
 
     }
 
-    @Then("^user click any ProductDetail image$")
-    public void ClickProductDetail$()
+    @Then("^user click any productlist image$")
+    public void Clickproductlist$()
     {
 
-       homePage.ClickProductDetail();
+       homePage.Clickproductlist();
 
     }
     @Then("user select filter {string}")
     public void SelectFilter(String filter)
     {
 
-        productdetail.ClickFilterMEnu(filter);
+        productlist.ClickFilterMEnu(filter);
 
     }
 
@@ -82,9 +81,13 @@ public class LoginSteps {
     public void SelectCheckbox()
     {
 
-        productdetail.SelectAnyCheckboxOnFilterMenu();
+        productlist.SelectAnyCheckboxOnFilterMenu();
 
     }
 
-    
+    @And("user click any product")
+    public  void ClickAnyProduct()
+    {
+        productlist.ClickAnyProduct();
+    }
 }
