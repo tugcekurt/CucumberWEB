@@ -1,16 +1,16 @@
-Feature:Login
-
-  Scenario Outline: LoginCases
+Feature:LoginSystemScenarios
+  @LoginTest
+  Scenario Outline: SuccessLogin
 
     Given user is on HomePage
     When user click Login button
     And user enter email "<email>" and enter  password "<password>"
-    And click GirisYap button and check user is login with "<email>"
-    Then user click Tab Buttons and user check images loaded
-    Then user click any ProductDetail image
-    And user select filter "<filter>"
-    And user select any checkbox
-    And user click any product
+    And click GirisYap button
+    Then check user is login with "<email>"
+    And user click every each Tab Buttons and user check every each tabs images loaded
+
+
+
 
 
 

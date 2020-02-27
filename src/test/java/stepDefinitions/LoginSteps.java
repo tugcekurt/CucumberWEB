@@ -44,50 +44,29 @@ public class LoginSteps {
                loginpopup.EnterEmailAndPAssWord(email,password);
     }
 
-    @And("click GirisYap button and check user is login with {string}")
-    public void ClickGirisYApButton(String email)
+    @And("click GirisYap button")
+    public void ClickGirisYApButton()
     {
         loginpopup.ClickGirisYapButton();
 
-        homePage.CheckIsUserLogin(email);
+
 
     }
 
-    @Then("^user click Tab Buttons and user check images loaded$")
+    @Then("check user is login with {string}")
+    public  void  CheckIsUserLoggin(String email)
+    {
+        homePage.CheckIsUserLogin(email);
+    }
+
+
+    @And("^user click every each Tab Buttons and user check every each tabs images loaded$")
     public void ClickTabButtons$()
     {
 
         homePage.CheckIndirimleriKacirmaPopUp();
         homePage.ClickTabButons();
-
     }
 
-    @Then("^user click any productlist image$")
-    public void Clickproductlist$()
-    {
 
-       homePage.Clickproductlist();
-
-    }
-    @Then("user select filter {string}")
-    public void SelectFilter(String filter)
-    {
-
-        productlist.ClickFilterMEnu(filter);
-
-    }
-
-    @Then("user select any checkbox")
-    public void SelectCheckbox()
-    {
-
-        productlist.SelectAnyCheckboxOnFilterMenu();
-
-    }
-
-    @And("user click any product")
-    public  void ClickAnyProduct()
-    {
-        productlist.ClickAnyProduct();
-    }
 }

@@ -3,6 +3,7 @@ package managers;
 import org.openqa.selenium.WebDriver;
 import pageObject.HomePage;
 import pageObject.LoginPopUp;
+import pageObject.ProductDetailPage;
 import pageObject.ProductListPage;
 
 public class PageObjectManager {
@@ -12,6 +13,7 @@ public class PageObjectManager {
     private HomePage homePage;
     private LoginPopUp loginPopUp;
     private ProductListPage productListPage;
+    private  ProductDetailPage productDetailPage;
 
     public PageObjectManager(WebDriver  driver) {
 
@@ -36,5 +38,10 @@ public class PageObjectManager {
 
         return (productListPage == null) ? productListPage = new ProductListPage(driver) : productListPage;
 
+    }
+
+    public ProductDetailPage getProductDetailPage()
+    {
+        return  (productDetailPage==null)?productDetailPage=new ProductDetailPage(driver):productDetailPage;
     }
 }
