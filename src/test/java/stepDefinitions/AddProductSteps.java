@@ -35,21 +35,6 @@ public class AddProductSteps {
         homePage.Clickproductlist();
 
     }
-    @When("user select filter {string}")
-    public void SelectFilter(String filter)
-    {
-
-        productlist.ClickFilterMEnu(filter);
-
-    }
-
-    @And("user select any checkbox")
-    public void SelectCheckbox()
-    {
-
-        productlist.SelectAnyCheckboxOnFilterMenu();
-
-    }
 
     @And("user click any product")
     public  void ClickAnyProduct()
@@ -57,7 +42,7 @@ public class AddProductSteps {
         productlist.ClickAnyProduct();
     }
 
-    @And("user add product in basket")
+    @When("user add product in basket")
     public  void AddProduct()
     {
         productDetailPage.ClickSepeteEkleButon();

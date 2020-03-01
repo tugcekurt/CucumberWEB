@@ -49,7 +49,7 @@ public class LoginSteps {
     {
         loginpopup.ClickGirisYapButton();
 
-
+        homePage.CheckIndirimleriKacirmaPopUp();
 
     }
 
@@ -64,7 +64,7 @@ public class LoginSteps {
     public void ClickTabButtons$()
     {
 
-        homePage.CheckIndirimleriKacirmaPopUp();
+
         homePage.ClickTabButons();
     }
 

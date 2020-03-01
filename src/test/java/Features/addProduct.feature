@@ -7,10 +7,8 @@ Feature:AddProductsInBasket
     And user enter email "<email>" and enter  password "<password>"
     And click GirisYap button
     Then user click any productlist image
-    When user select filter "<filter>"
-    And user select any checkbox
     And user click any product
-    And user add product in basket
+    When user add product in basket
     Then user seen added product
 
 

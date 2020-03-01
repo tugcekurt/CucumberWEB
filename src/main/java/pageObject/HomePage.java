@@ -50,6 +50,10 @@ public class HomePage {
     @FindBy(how = How.XPATH, using = " //*[@id='browsing-gw-homepage']//article[@class='component-item']/a")
     private List<WebElement> detail_images;
 
+
+    @FindBy(how = How.XPATH, using = "//article[@class='component-item']/a")
+    private List<WebElement> productImagesOnhomepage;
+
     public  void NavigateHomePage()
     {
 
@@ -150,5 +154,7 @@ public class HomePage {
 
         }
     }
+
+
 
 }
