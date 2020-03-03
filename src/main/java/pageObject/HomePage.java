@@ -153,6 +153,8 @@ public class HomePage {
             break;
 
         }
+
+        System.out.println(FileReadManager.getInstance().getConfigReader().getReportConfigPath());
     }
 
 

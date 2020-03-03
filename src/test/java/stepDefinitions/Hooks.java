@@ -6,6 +6,7 @@ import io.cucumber.java.Scenario;
 import managers.DriverManager;
 
 
+import managers.FileReadManager;
 import org.apache.maven.shared.utils.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,33 +21,46 @@ import java.nio.file.Files;
 public class Hooks {
 
     TestContext testContext;
-    WebDriver driver;
+
 
     public Hooks(TestContext context) {
         testContext = context;
     }
 
-    @After
+    @After(order=1)
     public void AfterSteps(Scenario scenario) throws IOException {
 
         System.out.println(scenario.getName().toString());
         System.out.println(scenario.getStatus());
 
-       this.driver=driver;
+
+
         if (scenario.isFailed()) {
-            final byte[] screenshot  =  ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            String screenshotName = scenario.getName().replaceAll(" ", "_");
 
-            File sourcePath=((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            try
+            {
+                File sourcePath = ((TakesScreenshot) testContext.getWebDriverManager().getDriver()).getScreenshotAs(OutputType.FILE);
+                File destinationPath = new File(System.getProperty("user.dir") + "/target/cucumber-reports/screenshots/" + screenshotName + ".png");
 
-            File dest = new File("C:\\Automation\\ScreenShots");
+                System.out.println(sourcePath.toPath().toString());
+                System.out.println(destinationPath.toPath().toString());
 
-            scenario.embed(screenshot , "image/png");
+                Files.copy(sourcePath.toPath(), destinationPath.toPath());
+            }
 
-           // Files.copy();
+            catch (Exception ignore)
+            {
 
+            }
         }
 
-        testContext.getWebDriverManager().closeDriver();
 
+
+    }
+
+    @After(order = 0)
+    public void AfterSteps() {
+        testContext.getWebDriverManager().closeDriver();
     }
 }
